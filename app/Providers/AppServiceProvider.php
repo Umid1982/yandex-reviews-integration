@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\Car\CarRepository;
-use App\Repositories\Car\CarRepositoryInterface;
-use App\Repositories\User\UserRepository;
-use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\Setting\SettingRepository;
+use App\Repositories\Setting\SettingRepositoryInterface;
+use App\Services\Reviews\Providers\ReviewsProviderInterface;
+use App\Services\Reviews\Providers\YandexReviewsProvider;
+use App\Services\Reviews\ReviewsService;
+use App\Services\Reviews\ReviewsServiceInterface;
+use App\Services\Settings\SettingService;
+use App\Services\Settings\SettingServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,9 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Регистрация биндингов интерфейсов репозиториев
-        $this->app->bind(CarRepositoryInterface::class, CarRepository::class);
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);
+        $this->app->bind(ReviewsProviderInterface::class, YandexReviewsProvider::class);
+        $this->app->bind(ReviewsServiceInterface::class, ReviewsService::class);
+        $this->app->bind(SettingServiceInterface::class, SettingService::class);
     }
 
     /**

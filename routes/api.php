@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\CarController;
+use App\Http\Controllers\Api\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/cars/available', [CarController::class, 'available']);
-});
+    Route::get('/reviews', [ReviewController::class, 'list'])->name('api.reviews.list');
